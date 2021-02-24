@@ -18,10 +18,12 @@ var images = [];
 var strings = [];
 var midX;
 var midY;
+var startY;
 var lineHeight = 24;
 var drawFunction;
 var gTextOffset = 20;
 
+// Preload some images
 function preload() {
   images[0] = loadImage('assets/EntranceHallBack.png');
   images[1] = loadImage('assets/DiningRoomBack.png');
@@ -34,6 +36,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  // provide values for variables
   midX = width/2;
   midY = height/2;
   startY = 60;
@@ -41,6 +44,8 @@ function setup() {
   imageMode(CENTER);
   textAlign(CENTER);
   textSize(24);
+
+  // load most of images now
   entrance = loadImage('assets/Entrance.png');
   chandeliersDining = loadImage('assets/ChandeliersDining.png');
   table = loadImage('assets/Table.png');
@@ -60,9 +65,11 @@ function setup() {
 
 function draw() {
   background(255);
+  // call functions
   drawFunction();
 }
 
+// put the first preload image and more
 drawEntranceHall = function() {
   image(images[0], midX, midY, windowWidth, windowHeight);
   image(entrance, midX, midY, windowWidth, windowHeight);
@@ -71,6 +78,7 @@ drawEntranceHall = function() {
   loadArray();
 }
 
+// put the second preload image and more
 drawDiningRoom = function() {
   image(images[1], midX, midY, windowWidth, windowHeight);
   image(chandeliersDining, midX, midY, windowWidth, windowHeight);
@@ -80,6 +88,7 @@ drawDiningRoom = function() {
   fill(0,0,0);
 }
 
+// put the third preload image and more
 drawKitchenRoom = function() {
   image(kitchen, midX, midY, windowWidth, windowHeight);
   image(images[2], midX, midY, windowWidth, windowHeight);
@@ -87,6 +96,7 @@ drawKitchenRoom = function() {
   fill(0,0,0);
 }
 
+// put the fourth preload image and more
 drawLivingRoom = function() {
   image(images[3], midX, midY, windowWidth, windowHeight);
   image(chandeliersLiving, midX, midY, windowWidth, windowHeight);
@@ -97,7 +107,7 @@ drawLivingRoom = function() {
   fill(0,0,0);
 }
 
-//-- drawOne() will draw the image at index 4 from the array
+// put the fifth preload image and more
 drawBedRoom = function() {
   image(images[4], midX, midY, windowWidth, windowHeight);
   image(bedroom, midX, midY, windowWidth, windowHeight);
@@ -105,13 +115,14 @@ drawBedRoom = function() {
   text("Bathroom is private location, please first knock to check if anyone's there!", midX, height - gTextOffset);
 }
 
+// put the sixth preload image and more
 drawBathRoom = function() {
   image(bathroom, midX, midY, windowWidth, windowHeight);
   image(images[5], midX, midY, windowWidth, windowHeight);
   fill(0,0,0);
 }
 
-
+// array appears in the first room as an instructure
 function loadArray() {
   strings[0] = "click the doors to next room";
   strings[1] = "or";
@@ -127,7 +138,7 @@ function loadArray() {
   }
 }
 
-// Change the drawFunction variable
+// create some functions to switch the room
 function EnterEntranceHall() {
   drawFunction = drawEntranceHall;
 }
@@ -152,6 +163,7 @@ function EnterBathroom() {
   drawFunction = drawBathRoom;
 }
 
+// Change the drawFunction variable use keyboard
 function keyTyped() {
   if (drawFunction === drawEntranceHall) {
     if (key === 'l') {
@@ -205,6 +217,7 @@ function keyTyped() {
   }
 }
 
+// create some functions to switch the room
 function leftSign() {
   if (mouseX <= midX / 2) {
     if (mouseY >= midY - 100 && mouseY <= midY + 100) {
@@ -269,6 +282,7 @@ function upperRightsign() {
   return false;
 }
 
+// Change the drawFunction variable use button
 function mousePressed() {
   if (drawFunction === drawEntranceHall) {
     if (leftSign()) {
